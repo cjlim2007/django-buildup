@@ -1,7 +1,11 @@
 from datetime import datetime
-from django.http import HttpResponse
-def hello(request):
-    return HttpResponse("Hello world!")
+from random import randint
+import subprocess
+from django.shortcuts import render
 
-def time(request):
-    return HttpResponse("The time is " + str(datetime.now()))
+
+
+    
+def hello_template(request, yourname, yoursentence):
+    subprocess.call(["say", yoursentence])
+    return render(request, "hello.html", { "yourname": yourname, "foobar": 12, "time": (datetime.now()), "random": randint(1,10)})
