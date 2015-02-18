@@ -2,8 +2,10 @@ from datetime import datetime
 from random import randint
 import subprocess
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django import forms
+from django.core.urlresolvers import reverse
 
 from buildup.models import Fact
 
@@ -25,3 +27,29 @@ def speak(request, sentence):
 
 def all_facts(request):
     return render(request, "all_facts.html", { "facts": Fact.objects.all() })
+
+class FactForm(forms.Form):
+    text = forms.CharField(label="A random fact", max_length=255)
+    author = forms.CharField(label="Your name", max_length=255)
+
+def new_fact(request):
+    # someone wants to create a fact
+    if request.method == "GET":
+        form = FactForm()
+        return render(request, "new_fact.html", { "form": form })
+    else:
+        # someone submitted the form so we need to save the data
+        form = FactForm(request.POST)
+
+        if form.is_valid():
+            # save the new fact
+            text = form.cleaned_data['text']
+            author = form.cleaned_data['author']
+            new_fact = Fact(text=text, author=author, created_date=datetime.now())
+            new_fact.save()
+
+            # and redirect to the all_facts page
+            return HttpResponseRedirect(reverse('all_facts'))
+        else:
+            # return the form with any errors
+            return render(request, "new_fact.html", { "form": form })

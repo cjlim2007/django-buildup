@@ -4,6 +4,7 @@
   </head>
   <body>
     <h1>All Facts</h1>
+    <a href="{% url 'new_fact' %}">Create a new Fact!</a>
     {% for fact in facts %}
     <hr/>
     <div>
