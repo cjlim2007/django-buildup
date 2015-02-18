@@ -5,6 +5,8 @@ import subprocess
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from buildup.models import Fact
+
 def hello(request):
     return HttpResponse("Hello world!")
 
@@ -20,3 +22,6 @@ def hello_template(request, yourname):
 def speak(request, sentence):
     subprocess.call(["say", sentence])
     return render(request, "speak.html")
+
+def all_facts(request):
+    return render(request, "all_facts.html", { "facts": Fact.objects.all() })

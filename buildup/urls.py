@@ -4,5 +4,6 @@ urlpatterns = patterns('',
     url(r'^time/$', 'buildup.views.time', name='time'),
     url(r'^random/$', 'buildup.views.random', name='random'),
     url(r'^hello/(?P<yourname>\w+)/$', 'buildup.views.hello_template', name='hello_template'),
-    url(r'^speak/(?P<sentence>[^/]+)/$', 'buildup.views.speak', name='speak')
+    url(r'^speak/(?P<sentence>\w+)/$', 'buildup.views.speak', name='speak'),
+    url(r'^facts/$', 'buildup.views.all_facts', name='all_facts'),
 )
