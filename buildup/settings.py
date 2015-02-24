@@ -8,3 +8,5 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "buildup/templates"),
 )
+import dj_database_url
+DATABASES = {'default': dj_database_url.config()}
