@@ -1,6 +1,6 @@
 from datetime import datetime
 from random import randint
-
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
@@ -30,6 +30,7 @@ class FactForm(forms.Form):
     text = forms.CharField(label="A random fact", max_length=255)
     author = forms.CharField(label="Your name", max_length=255)
 
+@login_required
 def new_fact(request):
     # someone wants to create a fact
     if request.method == "GET":
