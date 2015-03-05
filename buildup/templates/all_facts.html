@@ -1,8 +1,8 @@
-<html>
-  <head>
-    <title>Random Facts</title>
-  </head>
-  <body>
+{% extends "base.html" %}
+
+  {% block title %}Random Facts{% endblock %}
+  
+  {% block content %}
     <h1>All Facts</h1>
     <a href="{% url 'new_fact' %}">Create a new Fact!</a>
     {% for fact in facts %}
@@ -14,5 +14,5 @@
     {% endfor %}
     <hr/>
     Thats it
-  </body>
-</html>
+  {% endblock %}
+

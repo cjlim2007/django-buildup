@@ -20,7 +20,9 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.staticfiles'
 )
 LOGIN_REDIRECT_URL = '/facts/'
 LOGIN_URL='/login/'
 LOGOUT_URL='/logout/'
+STATIC_URL='/static/'

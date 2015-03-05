@@ -28,8 +28,7 @@ def all_facts(request):
 
 class FactForm(forms.Form):
     text = forms.CharField(label="A random fact", max_length=255)
-    author = forms.CharField(label="Your name", max_length=255)
-
+    
 @login_required
 def new_fact(request):
     # someone wants to create a fact
@@ -43,8 +42,7 @@ def new_fact(request):
         if form.is_valid():
             # save the new fact
             text = form.cleaned_data['text']
-            author = form.cleaned_data['author']
-            new_fact = Fact(text=text, author=author, created_date=datetime.now())
+            new_fact = Fact(text=text, author=request.user , created_date=datetime.now())
             new_fact.save()
 
             # and redirect to the all_facts page
