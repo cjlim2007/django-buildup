@@ -5,8 +5,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
 from django.core.urlresolvers import reverse
-
 from buildup.models import Fact
+
+def front(request):
+    return render(request, "front.html")
+
+def info(request):
+    return render(request, "info.html")
+
 
 def hello(request):
     return HttpResponse("Hello world!")
@@ -28,7 +34,7 @@ def all_facts(request):
 
 class FactForm(forms.Form):
     text = forms.CharField(label="A random fact", max_length=255)
-    
+
 @login_required
 def new_fact(request):
     # someone wants to create a fact

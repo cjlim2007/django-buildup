@@ -26,3 +26,8 @@ LOGIN_REDIRECT_URL = '/facts/'
 LOGIN_URL='/login/'
 LOGOUT_URL='/logout/'
 STATIC_URL='/static/'
+STATIC_ROOT='staticfiles'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'buildup/static'),
+)
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
