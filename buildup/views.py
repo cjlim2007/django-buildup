@@ -13,6 +13,11 @@ def front(request):
 def info(request):
     return render(request, "info.html")
 
+def profile(request):
+    return render(request, "profile.html")
+
+
+
 
 def hello(request):
     return HttpResponse("Hello world!")
